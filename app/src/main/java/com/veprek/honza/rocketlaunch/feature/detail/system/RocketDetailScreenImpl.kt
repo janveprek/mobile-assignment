@@ -124,14 +124,18 @@ fun RocketDetailScreenImpl(
                                     subtitle = stringResource(R.string.parameter_mass)
                                 )
                             }
-                            Stage(
-                                name = stringResource(R.string.first_stage),
-                                stage = rocket.firstStage
-                            )
-                            Stage(
-                                name = stringResource(R.string.second_stage),
-                                stage = rocket.secondStage
-                            )
+                            rocket.firstStage?.let {
+                                Stage(
+                                    name = stringResource(R.string.first_stage),
+                                    stage = rocket.firstStage
+                                )
+                            }
+                            rocket.secondStage?.let {
+                                Stage(
+                                    name = stringResource(R.string.second_stage),
+                                    stage = rocket.secondStage
+                                )
+                            }
                             Text(
                                 stringResource(R.string.photos),
                                 style = MaterialTheme.typography.h4
