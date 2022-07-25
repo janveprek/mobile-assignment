@@ -25,3 +25,7 @@ val mediumPadding = 12.dp
 
 // Rounded corner
 val cornerRadius = 16.dp
+
+// Shape padding
+val smallCornerShape = 4.dp
+val largeCornerShape = 0.dp

@@ -29,10 +29,6 @@ class RocketLaunchViewModel
         }
     }
 
-    fun rocketLaunched(): Boolean {
-        return !_isLaunched.asStateFlow().value
-    }
-
     fun fail() {
         val current = _isLaunched.value
         viewModelScope.launch {
