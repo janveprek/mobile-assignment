@@ -25,19 +25,17 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntOffset
-import androidx.core.content.getSystemService
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.NavController
 import com.veprek.honza.rocketlaunch.R
 import com.veprek.honza.rocketlaunch.feature.launch.presentation.RocketLaunchViewModel
@@ -50,8 +48,7 @@ import kotlin.math.abs
 @Composable
 fun RocketLaunchScreen(
     modifier: Modifier = Modifier,
-    navController: NavController,
-    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
+    navController: NavController
 ) {
     val viewModel: RocketLaunchViewModel = hiltViewModel()
 
@@ -104,16 +101,18 @@ fun RocketLaunchScreen(
         override fun onAccuracyChanged(p0: Sensor?, p1: Int) {}
     }
 
-    sensorManager.registerListener(
-        sensorEventListener,
-        sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),
-        SensorManager.SENSOR_DELAY_NORMAL
-    )
-    sensorManager.registerListener(
-        sensorEventListener,
-        sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
-        SensorManager.SENSOR_DELAY_NORMAL
-    )
+    LaunchedEffect(Unit) {
+        sensorManager.registerListener(
+            sensorEventListener,
+            sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY),
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
+        sensorManager.registerListener(
+            sensorEventListener,
+            sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
+    }
 
     Log.d("LaunchScreen")
     Scaffold(
