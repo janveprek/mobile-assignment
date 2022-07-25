@@ -38,8 +38,8 @@ class RocketRepositoryImpl
                     emit(ResponseWrapper(State.SUCCESS, rockets))
                 }
             } else {
+                emit(ResponseWrapper(State.FAILED, null))
                 Log.d("Other exception ${e.stackTraceToString()}")
-                throw e
             }
         }
     }
@@ -61,7 +61,8 @@ class RocketRepositoryImpl
                     emit(ResponseWrapper(State.SUCCESS, rocket))
                 }
             } else {
-                throw e
+                emit(ResponseWrapper(State.FAILED, null))
+                Log.d("Other exception ${e.stackTraceToString()}")
             }
         }
     }
