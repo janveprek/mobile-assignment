@@ -10,8 +10,8 @@ class RocketApiMapper @Inject constructor(
     private val heightApiMapper: HeightApiMapper,
     private val massApiMapper: MassApiMapper,
     private val stageApiMapper: StageApiMapper
-) : ApiMapper<RocketApi, Rocket> {
-    var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
+) : ApiMapper<RocketApi, Rocket>, ApiListMapper<RocketApi, Rocket> {
+    private var formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
 
     override fun mapToDomain(apiEntity: RocketApi): Rocket {
         return Rocket(
@@ -29,8 +29,8 @@ class RocketApiMapper @Inject constructor(
         )
     }
 
-    fun mapToDomainList(rocketList: List<RocketApi>): List<Rocket> {
-        return rocketList.map { mapToDomain(it) }
+    override fun mapToDomainList(apiEntityList: List<RocketApi>): List<Rocket> {
+        return apiEntityList.map { mapToDomain(it) }
     }
 
     private fun formatDate(dateString: String): String {
