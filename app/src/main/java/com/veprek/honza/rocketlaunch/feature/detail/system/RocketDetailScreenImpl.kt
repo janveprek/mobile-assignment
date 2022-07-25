@@ -1,5 +1,6 @@
 package com.veprek.honza.rocketlaunch.feature.detail.system
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -40,6 +41,7 @@ import quanti.com.kotlinlog.Log
 fun RocketDetailScreenImpl(
     rocketState: ResponseWrapper<Rocket?>,
     backAction: () -> Unit = {},
+    imageAction: (String) -> Unit = {},
     launchAction: () -> Unit = {}
 ) {
     Log.d("Data: ${rocketState.data}")
@@ -147,6 +149,11 @@ fun RocketDetailScreenImpl(
                                     modifier = Modifier
                                         .clip(RoundedCornerShape(cornerRadius))
                                         .align(Alignment.CenterHorizontally)
+                                        .clickable {
+                                            Log.d("Clicked Image, url: $it")
+                                            imageAction(it)
+//
+                                        }
                                 )
                             }
                         }

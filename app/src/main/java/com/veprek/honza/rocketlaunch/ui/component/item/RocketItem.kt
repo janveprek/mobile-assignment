@@ -36,7 +36,6 @@ fun RocketItem(rocket: Rocket, iconColor: Color = pink, detailAction: (String) -
             .clickable {
                 Log.d("Clicked")
                 detailAction(rocket.id)
-//
             },
         trailing = {
             Icon(

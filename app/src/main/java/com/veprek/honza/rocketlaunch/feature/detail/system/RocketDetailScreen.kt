@@ -3,6 +3,7 @@ package com.veprek.honza.rocketlaunch.feature.detail.system
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.veprek.honza.rocketlaunch.feature.detail.presentation.RocketDetailViewModel
@@ -26,10 +27,14 @@ fun RocketDetailScreen(
     }
 
     val rocketFlow = viewModel.rocket.collectAsState()
+    val context = LocalContext.current
 
     RocketDetailScreenImpl(
         rocketState = rocketFlow.value,
         backAction = { navController.popBackStack() },
+        imageAction = { imageId ->
+            viewModel.getFile(imageId, context)
+        },
         launchAction = { navController.navigate(NavigationScreens.RocketLaunchScreen.route) }
     )
 }

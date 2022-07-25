@@ -28,6 +28,7 @@
     <string name="stage_burn_time">%d seconds burn time</string>
     <string name="stage_reusable">reusable</string>
     <string name="stage_not_reusable">not reusable</string>
+    <string name="dummy_description">Falcon 9 is a two-stage rocket designed and manufactured by SpaceX for the reliable and safe transport of the satellites and the Dragon spacecraft into orbit.</string>
 
 
     <!-- Launch -->
@@ -46,5 +47,6 @@
     <!-- Rocket Item -->
     <string name="rocket_first_flight">First flight: %s</string>
 
-    <string name="dummy_description">Falcon 9 is a two-stage rocket designed and manufactured by SpaceX for the reliable and safe transport of the satellites and the Dragon spacecraft into orbit.</string>
+    <!-- Toast -->
+    <string name="file_saved">File saved to: %s</string>
 </resources>
