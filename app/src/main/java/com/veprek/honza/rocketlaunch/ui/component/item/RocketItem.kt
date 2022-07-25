@@ -21,15 +21,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import com.veprek.honza.rocketlaunch.R
-import com.veprek.honza.rocketlaunch.navigation.NavigationScreens
-import com.veprek.honza.rocketlaunch.repository.model.Height
-import com.veprek.honza.rocketlaunch.repository.model.Mass
 import com.veprek.honza.rocketlaunch.repository.model.Rocket
-import com.veprek.honza.rocketlaunch.repository.model.Stage
-import com.veprek.honza.rocketlaunch.ui.theme.RocketLaunchTheme
 import com.veprek.honza.rocketlaunch.ui.theme.iconPadding
 import com.veprek.honza.rocketlaunch.ui.theme.iconSize
 import com.veprek.honza.rocketlaunch.ui.theme.pink
@@ -37,12 +30,13 @@ import quanti.com.kotlinlog.Log
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun RocketItem(rocket: Rocket, iconColor: Color = pink, navController: NavController) {
+fun RocketItem(rocket: Rocket, iconColor: Color = pink, detailAction: (String) -> Unit = {}) {
     ListItem(
         Modifier.fillMaxWidth().background(MaterialTheme.colors.background)
             .clickable {
                 Log.d("Clicked")
-                navController.navigate(NavigationScreens.RocketDetailScreen.route + "/${rocket.id}")
+                detailAction(rocket.id)
+//
             },
         trailing = {
             Icon(
@@ -75,29 +69,5 @@ fun RocketItem(rocket: Rocket, iconColor: Color = pink, navController: NavContro
                 )
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun RocketItemPreview() {
-    val rocket = Rocket(
-        "1",
-        true,
-        "Falcon 1",
-        "24. 3. 2006",
-        "Desc",
-        Height(12, 12),
-        Height(40, 40),
-        Mass(55, 55),
-        Stage(true, 27, 1155, 162),
-        Stage(false, 1, 90, 397),
-        listOf(
-            "https://farm5.staticflickr.com/4599/38583829295_581f34dd84_b.jpg",
-            "https://farm5.staticflickr.com/4645/38583830575_3f0f7215e6_b.jpg"
-        )
-    )
-    RocketLaunchTheme {
-//        RocketItem(rocket)
     }
 }
