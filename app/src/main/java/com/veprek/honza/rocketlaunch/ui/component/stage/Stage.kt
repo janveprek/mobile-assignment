@@ -14,9 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.veprek.honza.rocketlaunch.R
 import com.veprek.honza.rocketlaunch.repository.model.Stage
 import com.veprek.honza.rocketlaunch.ui.component.item.StageItem
-import com.veprek.honza.rocketlaunch.ui.theme.LightGray
 import com.veprek.honza.rocketlaunch.ui.theme.RocketLaunchTheme
 import com.veprek.honza.rocketlaunch.ui.theme.cornerRadius
+import com.veprek.honza.rocketlaunch.ui.theme.lightGray
 import com.veprek.honza.rocketlaunch.ui.theme.mediumPadding
 import com.veprek.honza.rocketlaunch.ui.theme.smallPadding
 
@@ -28,7 +28,7 @@ fun Stage(
 ) {
     Surface(
         shape = RoundedCornerShape(cornerRadius),
-        color = LightGray
+        color = lightGray
     ) {
         Column(modifier = modifier.padding(mediumPadding)) {
             Text(
