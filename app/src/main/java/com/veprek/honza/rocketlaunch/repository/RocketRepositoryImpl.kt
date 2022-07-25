@@ -1,6 +1,6 @@
 package com.veprek.honza.rocketlaunch.repository
 
-import com.veprek.honza.rocketlaunch.repository.api.ApiImpl
+import com.veprek.honza.rocketlaunch.repository.api.RocketApi
 import com.veprek.honza.rocketlaunch.repository.db.dao.RocketDao
 import com.veprek.honza.rocketlaunch.repository.entity.NoConnectionException
 import com.veprek.honza.rocketlaunch.repository.entity.ResponseWrapper
@@ -16,7 +16,7 @@ import javax.inject.Singleton
 @Singleton
 class RocketRepositoryImpl
 @Inject constructor(
-    private val rocketApi: ApiImpl,
+    private val rocketApi: RocketApi,
     private val rocketDao: RocketDao,
     private val rocketMapper: RocketApiMapper
 ) : RocketRepository {

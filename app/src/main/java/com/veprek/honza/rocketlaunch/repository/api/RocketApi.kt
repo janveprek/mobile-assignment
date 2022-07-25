@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ApiImpl @Inject constructor(
+class RocketApi @Inject constructor(
     retrofit: Retrofit
 ) : Api {
     private val rocketApi = retrofit.create<Api>()
