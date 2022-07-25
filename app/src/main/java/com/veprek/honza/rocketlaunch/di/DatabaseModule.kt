@@ -26,6 +26,6 @@ class DatabaseModule {
             context,
             AppDatabase::class.java,
             "rocket_db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 }

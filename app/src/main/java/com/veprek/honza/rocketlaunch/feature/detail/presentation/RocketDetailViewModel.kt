@@ -32,7 +32,7 @@ class RocketDetailViewModel
             val fileName = downloadManager.downloadFile(id, context)
 
             withContext(Dispatchers.Main) {
-                Toast.makeText(context, "File name: $fileName", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Saved: $fileName", Toast.LENGTH_SHORT).show()
             }
         }
     }
