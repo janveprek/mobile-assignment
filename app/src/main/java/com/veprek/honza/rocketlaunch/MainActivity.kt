@@ -10,9 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.veprek.honza.rocketlaunch.navigation.Navigation
 import com.veprek.honza.rocketlaunch.ui.theme.RocketLaunchTheme
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+// @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

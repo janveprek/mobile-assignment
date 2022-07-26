@@ -1,6 +1,6 @@
 package com.veprek.honza.rocketlaunch.repository
 
-import com.veprek.honza.rocketlaunch.repository.api.RocketApi
+import com.veprek.honza.rocketlaunch.repository.api.Api
 import com.veprek.honza.rocketlaunch.repository.db.dao.RocketDao
 import com.veprek.honza.rocketlaunch.repository.entity.NoConnectionException
 import com.veprek.honza.rocketlaunch.repository.entity.ResponseWrapper
@@ -10,16 +10,13 @@ import com.veprek.honza.rocketlaunch.repository.model.State
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import quanti.com.kotlinlog.Log
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class RocketRepositoryImpl
-@Inject constructor(
-    private val rocketApi: RocketApi,
+class RocketRepositoryImpl constructor(
+    private val rocketApi: Api,
     private val rocketDao: RocketDao,
     private val rocketMapper: RocketApiMapper
 ) : RocketRepository {
+
     override suspend fun getAllRockets(): Flow<ResponseWrapper<List<Rocket>?>> = flow {
         emit(ResponseWrapper(State.LOADING, null))
 
