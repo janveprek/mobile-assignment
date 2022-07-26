@@ -30,7 +30,8 @@ fun RocketDetailScreen(
     val context = LocalContext.current
 
     RocketDetailScreenImpl(
-        rocketState = rocketFlow.value,
+        rocketState = rocketFlow.value.state,
+        rocketData = rocketFlow.value.data,
         backAction = { navController.popBackStack() },
         imageAction = { imageId ->
             viewModel.getFile(imageId, context)
