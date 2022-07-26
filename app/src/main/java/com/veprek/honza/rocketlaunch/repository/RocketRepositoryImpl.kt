@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import quanti.com.kotlinlog.Log
 
-class RocketRepositoryImpl constructor(
+class RocketRepositoryImpl(
     private val rocketApi: Api,
     private val rocketDao: RocketDao,
     private val rocketMapper: RocketApiMapper

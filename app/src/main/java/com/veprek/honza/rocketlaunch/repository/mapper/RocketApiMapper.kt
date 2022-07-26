@@ -4,9 +4,8 @@ import com.veprek.honza.rocketlaunch.repository.entity.RocketNetwork
 import com.veprek.honza.rocketlaunch.repository.model.Rocket
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import javax.inject.Inject
 
-class RocketApiMapper @Inject constructor(
+class RocketApiMapper(
     private val heightApiMapper: HeightApiMapper,
     private val massApiMapper: MassApiMapper,
     private val stageApiMapper: StageApiMapper
