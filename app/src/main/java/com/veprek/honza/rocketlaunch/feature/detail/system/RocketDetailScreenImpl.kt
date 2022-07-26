@@ -26,7 +26,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import coil.compose.AsyncImage
 import com.veprek.honza.rocketlaunch.R
-import com.veprek.honza.rocketlaunch.repository.entity.ResponseWrapper
 import com.veprek.honza.rocketlaunch.repository.model.Rocket
 import com.veprek.honza.rocketlaunch.repository.model.State
 import com.veprek.honza.rocketlaunch.ui.component.loading.Loading
@@ -39,22 +38,23 @@ import quanti.com.kotlinlog.Log
 
 @Composable
 fun RocketDetailScreenImpl(
-    rocketState: ResponseWrapper<Rocket?>,
+    rocketState: State,
+    rocketData: Rocket?,
     backAction: () -> Unit = {},
     imageAction: (String) -> Unit = {},
     launchAction: () -> Unit = {}
 ) {
-    Log.d("Data: ${rocketState.data}")
+    Log.d("Data: $rocketData, $rocketState")
     Log.d("Created Impl")
 
-    when (rocketState.state) {
+    when (rocketState) {
         State.LOADING -> {
             Log.d("Loading")
             Loading()
         }
         State.SUCCESS -> {
             Log.d("Success")
-            rocketState.data?.let { rocket ->
+            rocketData?.let { rocket ->
                 Scaffold(
                     topBar = {
                         TopAppBar(

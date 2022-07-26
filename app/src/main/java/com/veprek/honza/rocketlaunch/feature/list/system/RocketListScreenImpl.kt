@@ -21,7 +21,6 @@ import com.veprek.honza.rocketlaunch.ui.component.error.Error
 import com.veprek.honza.rocketlaunch.ui.component.loading.Loading
 import com.veprek.honza.rocketlaunch.ui.theme.horizontalPadding
 import com.veprek.honza.rocketlaunch.ui.theme.verticalPadding
-import quanti.com.kotlinlog.Log
 
 @Composable
 fun RocketListScreenImpl(
@@ -38,11 +37,9 @@ fun RocketListScreenImpl(
         ) {
             when (state) {
                 State.LOADING -> {
-                    Log.d("Loading list $isRefreshing")
                     Loading()
                 }
                 State.SUCCESS -> {
-                    Log.d("Success list $isRefreshing")
                     Column(
                         Modifier
                             .fillMaxSize()
