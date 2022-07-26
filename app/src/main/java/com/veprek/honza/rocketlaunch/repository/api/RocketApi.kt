@@ -1,6 +1,6 @@
 package com.veprek.honza.rocketlaunch.repository.api
 
-import com.veprek.honza.rocketlaunch.repository.entity.RocketApi
+import com.veprek.honza.rocketlaunch.repository.entity.RocketNetwork
 import retrofit2.Retrofit
 import retrofit2.create
 import javax.inject.Inject
@@ -12,11 +12,11 @@ class RocketApi @Inject constructor(
 ) : Api {
     private val rocketApi = retrofit.create<Api>()
 
-    override suspend fun getAllRockets(): List<RocketApi> {
+    override suspend fun getAllRockets(): List<RocketNetwork> {
         return rocketApi.getAllRockets()
     }
 
-    override suspend fun getRocket(rocketId: String): RocketApi {
+    override suspend fun getRocket(rocketId: String): RocketNetwork {
         return rocketApi.getRocket(rocketId)
     }
 }
