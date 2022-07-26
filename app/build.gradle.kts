@@ -1,8 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs")
 }
 
@@ -21,7 +19,6 @@ val ktlint: Configuration by configurations.creating
 val composeVersion = "1.1.1"
 val roomVersion = "2.4.2"
 val navVersion = "2.5.0"
-val hiltVersion = "2.42"
 val koinVersion = "3.1.6"
 
 // ****************** CONFIGURATION ************************ ////
@@ -79,15 +76,8 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.5.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.0")
     implementation("androidx.activity:activity-compose:1.5.0")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+//    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.0")
-
-    // Hilt
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
-    implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
-    testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
-    kaptTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
@@ -106,7 +96,7 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
+//    kapt("androidx.room:room-compiler:$roomVersion")
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

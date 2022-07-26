@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import quanti.com.kotlinlog.Log
 
-class ConnectionManager constructor(private val context: Context) {
+class ConnectionManager(private val context: Context) {
 
     fun isConnected(): Boolean {
         val connectivityManager =
