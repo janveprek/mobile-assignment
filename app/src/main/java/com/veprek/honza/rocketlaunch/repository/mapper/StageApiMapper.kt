@@ -1,11 +1,11 @@
 package com.veprek.honza.rocketlaunch.repository.mapper
 
-import com.veprek.honza.rocketlaunch.repository.entity.StageApi
+import com.veprek.honza.rocketlaunch.repository.entity.StageNetwork
 import com.veprek.honza.rocketlaunch.repository.model.Stage
 import javax.inject.Inject
 
-class StageApiMapper @Inject constructor() : ApiMapper<StageApi, Stage> {
-    override fun mapToDomain(apiEntity: StageApi): Stage {
+class StageApiMapper @Inject constructor() : ApiMapper<StageNetwork, Stage> {
+    override fun mapToDomain(apiEntity: StageNetwork): Stage {
         return Stage(
             reusable = apiEntity.reusable,
             engines = apiEntity.engines ?: 0,
