@@ -10,10 +10,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.veprek.honza.rocketlaunch.feature.launch.presentation.RocketLaunchViewModel
-import com.veprek.honza.rocketlaunch.navigation.NavigationScreens
+import org.koin.androidx.compose.viewModel
 import quanti.com.kotlinlog.Log
 import kotlin.math.abs
 
@@ -22,7 +21,7 @@ fun RocketLaunchScreen(
     modifier: Modifier = Modifier,
     navController: NavController
 ) {
-    val viewModel: RocketLaunchViewModel = hiltViewModel()
+    val viewModel: RocketLaunchViewModel by viewModel()
 
     val context = LocalContext.current
     val sensorManager: SensorManager =
@@ -88,9 +87,6 @@ fun RocketLaunchScreen(
     }
 
     RocketLaunchScreenImpl(state = state, launched = launched.value, backAction = {
-        navController.popBackStack(
-            NavigationScreens.RocketDetailScreen.route,
-            inclusive = false
-        )
+        navController.popBackStack()
     })
 }

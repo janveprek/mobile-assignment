@@ -15,7 +15,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 val networkModule = module {
     single { DownloadManager(androidContext()) }
     single { ConnectionManager(androidContext()) }
-    single { DownloadManager(androidContext()) }
     factory { NetworkStatusInterceptor(get()) }
     factory { provideOkHttpClient(get()) }
     factory { provideMoshi() }

@@ -3,17 +3,13 @@ package com.veprek.honza.rocketlaunch.feature.launch.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.veprek.honza.rocketlaunch.repository.model.RocketState
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import quanti.com.kotlinlog.Log
-import javax.inject.Inject
 
-@HiltViewModel
-class RocketLaunchViewModel
-@Inject constructor() : ViewModel() {
+class RocketLaunchViewModel : ViewModel() {
     private val _rocketState = MutableStateFlow(RocketState.WAITING)
     val rocketState: StateFlow<RocketState> get() = _rocketState.asStateFlow()
 

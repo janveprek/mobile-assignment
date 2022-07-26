@@ -7,16 +7,11 @@ import okhttp3.Request
 import quanti.com.kotlinlog.Log
 import java.io.File
 import java.io.FileOutputStream
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class DownloadManager
-@Inject constructor() {
+class DownloadManager(private val context: Context) {
 
     suspend fun downloadFile(
-        url: String,
-        context: Context
+        url: String
     ): String {
         val client = OkHttpClient.Builder().build()
         val request = Request.Builder().url(url).build()

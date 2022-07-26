@@ -4,10 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.veprek.honza.rocketlaunch.feature.detail.presentation.RocketDetailViewModel
 import com.veprek.honza.rocketlaunch.navigation.NavigationScreens
+import org.koin.androidx.compose.viewModel
 import quanti.com.kotlinlog.Log
 
 @Composable
@@ -15,7 +15,7 @@ fun RocketDetailScreen(
     navController: NavController,
     id: String?
 ) {
-    val viewModel: RocketDetailViewModel = hiltViewModel()
+    val viewModel: RocketDetailViewModel by viewModel()
 
     Log.d("Created Screen")
 
