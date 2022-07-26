@@ -22,7 +22,7 @@ val composeVersion = "1.1.1"
 val roomVersion = "2.4.2"
 val navVersion = "2.5.0"
 val hiltVersion = "2.42"
-val koinVersion = "3.2.0"
+val koinVersion = "3.1.6"
 
 // ****************** CONFIGURATION ************************ ////
 
@@ -122,11 +122,12 @@ dependencies {
     implementation("io.coil-kt:coil-compose:2.1.0")
 
     // Koin
-    implementation("io.insert-koin:koin-androidx-workmanager:$koinVersion")
     implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
     implementation("io.insert-koin:koin-android:$koinVersion")
     implementation("io.insert-koin:koin-core:$koinVersion")
-
+    implementation("io.insert-koin:koin-androidx-workmanager:$koinVersion")
+    // Because of Koin intent error
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
     // SwipeRefresh
     implementation("com.google.accompanist:accompanist-swiperefresh:0.24.13-rc")
 }
