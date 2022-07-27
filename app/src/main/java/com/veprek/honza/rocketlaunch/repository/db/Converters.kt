@@ -16,42 +16,36 @@ class Converters {
     @TypeConverter
     fun stageFromString(value: String): Stage? {
         val adapter: JsonAdapter<Stage> = moshi.adapter(Stage::class.java)
-
         return adapter.fromJson(value)
     }
 
     @TypeConverter
     fun stageToString(value: Stage?): String {
         val adapter: JsonAdapter<Stage> = moshi.adapter(Stage::class.java)
-
         return adapter.toJson(value)
     }
 
     @TypeConverter
     fun massFromString(value: String): Mass? {
         val adapter: JsonAdapter<Mass> = moshi.adapter(Mass::class.java)
-
         return adapter.fromJson(value)
     }
 
     @TypeConverter
     fun massToString(value: Mass?): String {
         val adapter: JsonAdapter<Mass> = moshi.adapter(Mass::class.java)
-
         return adapter.toJson(value)
     }
 
     @TypeConverter
     fun heightFromString(value: String): Height? {
         val adapter: JsonAdapter<Height> = moshi.adapter(Height::class.java)
-
         return adapter.fromJson(value)
     }
 
     @TypeConverter
     fun heightToString(value: Height?): String {
         val adapter: JsonAdapter<Height> = moshi.adapter(Height::class.java)
-
         return adapter.toJson(value)
     }
 

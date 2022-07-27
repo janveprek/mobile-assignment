@@ -2,7 +2,6 @@ package com.veprek.honza.rocketlaunch.di
 
 import com.veprek.honza.rocketlaunch.repository.RocketRepository
 import com.veprek.honza.rocketlaunch.repository.RocketRepositoryImpl
-import com.veprek.honza.rocketlaunch.repository.api.Api
 import com.veprek.honza.rocketlaunch.repository.mapper.HeightApiMapper
 import com.veprek.honza.rocketlaunch.repository.mapper.MassApiMapper
 import com.veprek.honza.rocketlaunch.repository.mapper.RocketApiMapper
@@ -15,6 +14,6 @@ val repoModule = module {
     factory { StageApiMapper() }
     factory { RocketApiMapper(get(), get(), get()) }
     single<RocketRepository> {
-        RocketRepositoryImpl(get<Api>(), get(), get())
+        RocketRepositoryImpl(get(), get(), get())
     }
 }

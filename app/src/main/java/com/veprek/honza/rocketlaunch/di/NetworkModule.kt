@@ -12,6 +12,8 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
+const val apiUrl = "https://api.spacexdata.com/v4/"
+
 val networkModule = module {
     single { DownloadManager(androidContext()) }
     single { ConnectionManager(androidContext()) }
@@ -19,7 +21,7 @@ val networkModule = module {
     factory { provideOkHttpClient(get()) }
     factory { provideMoshi() }
     single { provideRetrofit(get(), get()) }
-    single<Api> { provideRocketApi(get()) }
+    single { provideRocketApi(get()) }
 }
 
 fun provideOkHttpClient(
@@ -36,7 +38,7 @@ fun provideMoshi(): Moshi = Moshi.Builder()
 
 fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl("https://api.spacexdata.com/v4/")
+    .baseUrl(apiUrl)
     .client(okHttpClient)
     .build()
 

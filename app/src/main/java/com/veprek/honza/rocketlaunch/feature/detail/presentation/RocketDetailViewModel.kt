@@ -38,7 +38,6 @@ class RocketDetailViewModel(
             rocketRepository.getRocket(id).collect { response ->
                 Log.d("Response ${response.state}")
                 _rocket.value = response
-//                delay(1000)
             }
         }
     }

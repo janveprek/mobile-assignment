@@ -42,12 +42,4 @@ val DMSansTypography = Typography(
         fontFamily = fonts,
         fontSize = textSubtitle1
     )
-// /* Other default text styles to override
-
-// caption = TextStyle(
-//    fontFamily = FontFamily.Default,
-//    fontWeight = FontWeight.Normal,
-//    fontSize = 12.sp
-// )
-// */
 )
