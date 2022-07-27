@@ -17,25 +17,16 @@ class RocketLaunchViewModel : ViewModel() {
     val isLaunched: StateFlow<Boolean> get() = _isLaunched.asStateFlow()
 
     fun launch() {
-        val current = _isLaunched.value
         viewModelScope.launch {
+            _isLaunched.emit(false)
             _rocketState.emit(RocketState.LAUNCHED)
             Log.d("Rocket state: ${_rocketState.value}")
-            _isLaunched.emit(!current)
         }
     }
 
     fun fail() {
-        val current = _isLaunched.value
         viewModelScope.launch {
-            _rocketState.emit(RocketState.FAILED)
-            Log.d("Rocket state: ${_rocketState.value}")
-            _isLaunched.emit(!current)
-        }
-    }
-
-    fun failInAir() {
-        viewModelScope.launch {
+            _isLaunched.emit(false)
             _rocketState.emit(RocketState.FAILED)
             Log.d("Rocket state: ${_rocketState.value}")
         }

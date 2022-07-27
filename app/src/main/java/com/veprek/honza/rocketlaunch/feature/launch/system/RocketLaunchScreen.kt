@@ -14,6 +14,8 @@ import androidx.navigation.NavController
 import com.veprek.honza.rocketlaunch.feature.launch.presentation.RocketLaunchViewModel
 import org.koin.androidx.compose.viewModel
 import quanti.com.kotlinlog.Log
+import java.util.Timer
+import kotlin.concurrent.schedule
 import kotlin.math.abs
 
 @Composable
@@ -61,11 +63,11 @@ fun RocketLaunchScreen(
                     val pitch = Math.toDegrees(orientation[1].toDouble())
                     val roll = Math.toDegrees(orientation[2].toDouble())
 
-                    lastPitch = if (lastPitch != null && lastPitch != pitch) {
+                    lastPitch = if (lastPitch != null) {
                         val difference = abs(pitch - lastPitch!!)
                         if (difference > 10) {
                             Log.d("Rozdil: $difference")
-                            viewModel.failInAir()
+                            viewModel.fail()
                             sensorManager.unregisterListener(this)
                         }
                         pitch
@@ -75,10 +77,12 @@ fun RocketLaunchScreen(
 
                     Log.d("Orientation: $azimuth, $pitch, $roll")
 
-                    if (abs(pitch + 10) >= 20) {
+                    val listener = this
+                    if (viewModel.isLaunched.value && abs(pitch + 5) >= 30) {
                         if (pitch < 0) viewModel.launch() else viewModel.fail()
-                        Log.d("$this")
-                        sensorManager.unregisterListener(this)
+                        Timer().schedule(1000) {
+                            sensorManager.unregisterListener(listener)
+                        }
                     }
                 }
             }
