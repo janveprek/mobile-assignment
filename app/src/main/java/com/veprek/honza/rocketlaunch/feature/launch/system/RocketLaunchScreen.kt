@@ -63,17 +63,15 @@ fun RocketLaunchScreen(
                     val pitch = Math.toDegrees(orientation[1].toDouble())
                     val roll = Math.toDegrees(orientation[2].toDouble())
 
-                    lastPitch = if (lastPitch != null) {
+                    if (lastPitch != null) {
                         val difference = abs(pitch - lastPitch!!)
                         if (difference > 10) {
                             Log.d("Rozdil: $difference")
                             viewModel.fail()
                             sensorManager.unregisterListener(this)
                         }
-                        pitch
-                    } else {
-                        pitch
                     }
+                    lastPitch = pitch
 
                     Log.d("Orientation: $azimuth, $pitch, $roll")
 
