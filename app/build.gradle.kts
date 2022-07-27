@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs")
+    id("com.google.devtools.ksp")
 }
 
 // ****************** VARIABLES ************************ ////
@@ -16,8 +17,8 @@ val VERSION_PATCH = "95"
 val ktlint: Configuration by configurations.creating
 
 // library version
-val composeVersion = "1.1.1"
-val roomVersion = "2.5.0-alpha02"
+val composeVersion = "1.2.0-beta02"
+val roomVersion = "2.5.0-alpha01"
 val navVersion = "2.5.0"
 val koinVersion = "3.1.6"
 
@@ -49,20 +50,20 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     configurations {
         ktlint
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.2.0"
+        kotlinCompilerExtensionVersion = composeVersion
     }
 }
 
@@ -95,7 +96,7 @@ dependencies {
     // Room
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
@@ -114,10 +115,6 @@ dependencies {
     // Koin
     implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
     implementation("io.insert-koin:koin-android:$koinVersion")
-    implementation("io.insert-koin:koin-core:$koinVersion")
-    implementation("io.insert-koin:koin-androidx-workmanager:$koinVersion")
-    // Because of Koin intent error
-    implementation("androidx.work:work-runtime-ktx:2.7.1")
     // SwipeRefresh
     implementation("com.google.accompanist:accompanist-swiperefresh:0.24.13-rc")
 }

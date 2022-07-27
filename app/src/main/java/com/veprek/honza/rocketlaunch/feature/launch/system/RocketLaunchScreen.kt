@@ -27,6 +27,7 @@ fun RocketLaunchScreen(
     val sensorManager: SensorManager =
         context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
+    var lastPitch: Double? = null
     var gravity: FloatArray? = null
     var geomagnetic: FloatArray? = null
 
@@ -59,6 +60,19 @@ fun RocketLaunchScreen(
                     val azimuth = Math.toDegrees(orientation[0].toDouble())
                     val pitch = Math.toDegrees(orientation[1].toDouble())
                     val roll = Math.toDegrees(orientation[2].toDouble())
+
+                    lastPitch = if (lastPitch != null && lastPitch != pitch) {
+                        val difference = abs(pitch - lastPitch!!)
+                        if (difference > 10) {
+                            Log.d("Rozdil: $difference")
+                            viewModel.failInAir()
+                            sensorManager.unregisterListener(this)
+                        }
+                        pitch
+                    } else {
+                        pitch
+                    }
+
                     Log.d("Orientation: $azimuth, $pitch, $roll")
 
                     if (abs(pitch + 10) >= 20) {
@@ -82,6 +96,11 @@ fun RocketLaunchScreen(
         sensorManager.registerListener(
             sensorEventListener,
             sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
+        sensorManager.registerListener(
+            sensorEventListener,
+            sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
             SensorManager.SENSOR_DELAY_NORMAL
         )
     }

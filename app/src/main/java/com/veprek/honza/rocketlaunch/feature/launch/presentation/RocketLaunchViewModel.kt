@@ -33,4 +33,11 @@ class RocketLaunchViewModel : ViewModel() {
             _isLaunched.emit(!current)
         }
     }
+
+    fun failInAir() {
+        viewModelScope.launch {
+            _rocketState.emit(RocketState.FAILED)
+            Log.d("Rocket state: ${_rocketState.value}")
+        }
+    }
 }
