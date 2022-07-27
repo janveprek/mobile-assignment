@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.veprek.honza.rocketlaunch.R
 import com.veprek.honza.rocketlaunch.repository.RocketRepository
 import com.veprek.honza.rocketlaunch.repository.api.DownloadManager
 import com.veprek.honza.rocketlaunch.repository.entity.ResponseWrapper
@@ -28,7 +29,7 @@ class RocketDetailViewModel(
             val fileName = downloadManager.downloadFile(id)
 
             withContext(Dispatchers.Main) {
-                Toast.makeText(context, "Saved: $fileName", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.file_saved, fileName), Toast.LENGTH_SHORT).show()
             }
         }
     }

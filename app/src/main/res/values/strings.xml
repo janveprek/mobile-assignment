@@ -48,5 +48,5 @@
     <string name="rocket_first_flight">First flight: %s</string>
 
     <!-- Toast -->
-    <string name="file_saved">File saved to: %s</string>
+    <string name="file_saved">File saved to: data/data/package_name/files/%s</string>
 </resources>
