@@ -26,7 +26,6 @@ import com.veprek.honza.rocketlaunch.repository.model.Rocket
 import com.veprek.honza.rocketlaunch.ui.theme.iconPadding
 import com.veprek.honza.rocketlaunch.ui.theme.iconSize
 import com.veprek.honza.rocketlaunch.ui.theme.pink
-import quanti.com.kotlinlog.Log
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -34,7 +33,6 @@ fun RocketItem(rocket: Rocket, iconColor: Color = pink, detailAction: (String) -
     ListItem(
         Modifier.fillMaxWidth().background(MaterialTheme.colors.background)
             .clickable {
-                Log.d("Clicked")
                 detailAction(rocket.id)
             },
         trailing = {

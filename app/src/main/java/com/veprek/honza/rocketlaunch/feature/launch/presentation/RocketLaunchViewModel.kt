@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import quanti.com.kotlinlog.Log
 
 class RocketLaunchViewModel : ViewModel() {
     private val _rocketState = MutableStateFlow(RocketState.WAITING)
@@ -20,7 +19,6 @@ class RocketLaunchViewModel : ViewModel() {
         viewModelScope.launch {
             _isLaunched.emit(false)
             _rocketState.emit(RocketState.LAUNCHED)
-            Log.d("Rocket state: ${_rocketState.value}")
         }
     }
 
@@ -28,7 +26,6 @@ class RocketLaunchViewModel : ViewModel() {
         viewModelScope.launch {
             _isLaunched.emit(false)
             _rocketState.emit(RocketState.FAILED)
-            Log.d("Rocket state: ${_rocketState.value}")
         }
     }
 }

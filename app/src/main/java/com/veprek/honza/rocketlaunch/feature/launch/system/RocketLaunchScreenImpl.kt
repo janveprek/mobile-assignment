@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.IntOffset
 import com.veprek.honza.rocketlaunch.R
 import com.veprek.honza.rocketlaunch.repository.model.RocketState
 import com.veprek.honza.rocketlaunch.ui.theme.verticalPadding
-import quanti.com.kotlinlog.Log
 
 @Composable
 fun RocketLaunchScreenImpl(
@@ -39,8 +38,6 @@ fun RocketLaunchScreenImpl(
     launched: Boolean,
     backAction: () -> Unit = {}
 ) {
-    Log.d("LaunchScreen")
-
     Scaffold(
         topBar = {
             TopAppBar(

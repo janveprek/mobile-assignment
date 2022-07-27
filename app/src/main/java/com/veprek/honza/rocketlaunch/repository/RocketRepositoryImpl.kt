@@ -28,10 +28,8 @@ class RocketRepositoryImpl(
             if (e is NoConnectionException) {
                 val rockets = rocketDao.getAll()
                 if (rockets.isEmpty()) {
-                    Log.d("Empty DB")
                     emit(ResponseWrapper(State.NO_INTERNET, null))
                 } else {
-                    Log.d("From DB")
                     emit(ResponseWrapper(State.SUCCESS, rockets))
                 }
             } else {
@@ -45,16 +43,13 @@ class RocketRepositoryImpl(
         emit(ResponseWrapper(State.LOADING, null))
         try {
             val rocket = rocketApi.getRocket(id)
-//            rocketDao.insertOrUpdateRocket(rocketMapper.mapToDomain(rocket))
             emit(ResponseWrapper(State.SUCCESS, rocketMapper.mapToDomain(rocket)))
         } catch (e: Exception) {
             if (e is NoConnectionException) {
                 val rocket = rocketDao.findById(id)
                 if (rocket == null) {
-                    Log.d("Empty DB")
                     emit(ResponseWrapper(State.NO_INTERNET, null))
                 } else {
-                    Log.d("From DB")
                     emit(ResponseWrapper(State.SUCCESS, rocket))
                 }
             } else {

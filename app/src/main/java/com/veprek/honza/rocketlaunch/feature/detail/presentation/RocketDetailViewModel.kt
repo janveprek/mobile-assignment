@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import quanti.com.kotlinlog.Log
 
 class RocketDetailViewModel(
     private val rocketRepository: RocketRepository,
@@ -37,7 +36,6 @@ class RocketDetailViewModel(
     fun getRocket(id: String) {
         viewModelScope.launch {
             rocketRepository.getRocket(id).collect { response ->
-                Log.d("Response ${response.state}")
                 _rocket.value = response
             }
         }
