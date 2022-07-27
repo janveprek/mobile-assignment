@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import com.veprek.honza.rocketlaunch.R
 import com.veprek.honza.rocketlaunch.repository.model.RocketState
@@ -126,6 +127,7 @@ fun RocketLaunchScreenImpl(
             Text(
                 modifier = Modifier.padding(bottom = verticalPadding),
                 text = text,
+                textAlign = TextAlign.Center,
                 style = MaterialTheme.typography.body1
             )
         }
