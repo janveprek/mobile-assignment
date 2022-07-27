@@ -8,7 +8,6 @@ import android.hardware.SensorManager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.veprek.honza.rocketlaunch.feature.launch.presentation.RocketLaunchViewModel
@@ -20,7 +19,6 @@ import kotlin.math.abs
 
 @Composable
 fun RocketLaunchScreen(
-    modifier: Modifier = Modifier,
     navController: NavController
 ) {
     val viewModel: RocketLaunchViewModel by viewModel()
@@ -66,7 +64,7 @@ fun RocketLaunchScreen(
                     if (lastPitch != null) {
                         val difference = abs(pitch - lastPitch!!)
                         if (difference > 10) {
-                            Log.d("Rozdil: $difference")
+                            Log.d("Difference: $difference")
                             viewModel.fail()
                             sensorManager.unregisterListener(this)
                         }
@@ -98,11 +96,6 @@ fun RocketLaunchScreen(
         sensorManager.registerListener(
             sensorEventListener,
             sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD),
-            SensorManager.SENSOR_DELAY_NORMAL
-        )
-        sensorManager.registerListener(
-            sensorEventListener,
-            sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
             SensorManager.SENSOR_DELAY_NORMAL
         )
     }
