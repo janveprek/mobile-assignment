@@ -16,27 +16,25 @@ class DownloadManager(private val context: Context) {
         val client = OkHttpClient.Builder().build()
         val request = Request.Builder().url(url).build()
 
-        val executed = client.newCall(request).execute()
-        val body = executed.body
+        val call = client.newCall(request).execute()
+        val body = call.body
 
         val wrapper = ContextWrapper(context)
-        val file = File(wrapper.filesDir, "test.jpg")
-        val path = file.path
-        Log.d("File name: $path")
+        val name = url.substringAfterLast("/")
+        val file = File(wrapper.filesDir, name)
+        Log.d("File path: ${file.path}")
         if (!file.exists()) {
             file.createNewFile()
         }
-
         val outputStream = FileOutputStream(file)
 
         body?.let {
             val bytes = body.bytes()
-            Log.d("Delka: ${bytes.size} bytu")
             with(outputStream) {
                 write(bytes)
                 close()
             }
         }
-        return path
+        return name
     }
 }

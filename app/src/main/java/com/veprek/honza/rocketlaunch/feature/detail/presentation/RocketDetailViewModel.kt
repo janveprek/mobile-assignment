@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.veprek.honza.rocketlaunch.R
 import com.veprek.honza.rocketlaunch.repository.RocketRepository
+import com.veprek.honza.rocketlaunch.repository.api.ConnectionManager
 import com.veprek.honza.rocketlaunch.repository.api.DownloadManager
 import com.veprek.honza.rocketlaunch.repository.entity.ResponseWrapper
 import com.veprek.honza.rocketlaunch.repository.model.Rocket
@@ -18,17 +19,24 @@ import kotlinx.coroutines.withContext
 
 class RocketDetailViewModel(
     private val rocketRepository: RocketRepository,
-    private val downloadManager: DownloadManager
+    private val downloadManager: DownloadManager,
+    private val connectionManager: ConnectionManager
 ) : ViewModel() {
     private val _rocket = MutableStateFlow(ResponseWrapper<Rocket?>(State.LOADING, null))
     val rocket: StateFlow<ResponseWrapper<Rocket?>> get() = _rocket
 
     fun getFile(id: String, context: Context) {
-        viewModelScope.launch(Dispatchers.IO) {
-            val fileName = downloadManager.downloadFile(id)
+        if (connectionManager.isConnected()) {
+            viewModelScope.launch(Dispatchers.IO) {
+                val fileName = downloadManager.downloadFile(id)
 
-            withContext(Dispatchers.Main) {
-                Toast.makeText(context, context.getString(R.string.file_saved, fileName), Toast.LENGTH_SHORT).show()
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.file_saved, fileName),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
     }

@@ -7,6 +7,6 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     factory { RocketListViewModel(get()) }
-    factory { RocketDetailViewModel(get(), get()) }
+    factory { RocketDetailViewModel(get(), get(), get()) }
     factory { RocketLaunchViewModel() }
 }
