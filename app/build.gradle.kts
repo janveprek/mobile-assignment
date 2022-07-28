@@ -17,8 +17,8 @@ val VERSION_PATCH = "95"
 val ktlint: Configuration by configurations.creating
 
 // library version
-val composeVersion = "1.2.0-beta02"
-val roomVersion = "2.5.0-alpha01"
+val composeVersion = "1.2.0"
+val roomVersion = "2.5.0-alpha02"
 val navVersion = "2.5.0"
 val koinVersion = "3.1.6"
 
