@@ -49,4 +49,5 @@
 
     <!-- Toast -->
     <string name="file_saved">File saved to: data/data/package_name/files/%s</string>
+    <string name="file_offline">You must be connected to download images</string>
 </resources>

@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.veprek.honza.rocketlaunch.R
 import com.veprek.honza.rocketlaunch.repository.RocketRepository
-import com.veprek.honza.rocketlaunch.repository.api.ConnectionManager
 import com.veprek.honza.rocketlaunch.repository.api.DownloadManager
+import com.veprek.honza.rocketlaunch.repository.entity.NoConnectionException
 import com.veprek.honza.rocketlaunch.repository.entity.ResponseWrapper
 import com.veprek.honza.rocketlaunch.repository.model.Rocket
 import com.veprek.honza.rocketlaunch.repository.model.State
@@ -16,20 +16,35 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import quanti.com.kotlinlog.Log
 
 class RocketDetailViewModel(
     private val rocketRepository: RocketRepository,
-    private val downloadManager: DownloadManager,
-    private val connectionManager: ConnectionManager
+    private val downloadManager: DownloadManager
 ) : ViewModel() {
     private val _rocket = MutableStateFlow(ResponseWrapper<Rocket?>(State.LOADING, null))
     val rocket: StateFlow<ResponseWrapper<Rocket?>> get() = _rocket
 
     fun getFile(id: String, context: Context) {
-        if (connectionManager.isConnected()) {
-            viewModelScope.launch(Dispatchers.IO) {
-                val fileName = downloadManager.downloadFile(id)
+        viewModelScope.launch(Dispatchers.IO) {
+            var fileName: String? = null
+            try {
+                fileName = downloadManager.downloadFile(id)
+            } catch (e: Exception) {
+                if (e is NoConnectionException) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            context,
+                            context.getString(R.string.file_offline),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                } else {
+                    Log.d("Other exception ${e.stackTraceToString()}")
+                }
+            }
 
+            fileName?.let {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(
                         context,

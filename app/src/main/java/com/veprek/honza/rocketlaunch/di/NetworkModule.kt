@@ -15,13 +15,13 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 const val apiUrl = "https://api.spacexdata.com/v4/"
 
 val networkModule = module {
-    single { DownloadManager(androidContext()) }
     single { ConnectionManager(androidContext()) }
     factory { NetworkStatusInterceptor(get()) }
     factory { provideOkHttpClient(get()) }
     factory { provideMoshi() }
     single { provideRetrofit(get(), get()) }
     single { provideRocketApi(get()) }
+    single { DownloadManager(androidContext(), get()) }
 }
 
 fun provideOkHttpClient(

@@ -8,12 +8,11 @@ import quanti.com.kotlinlog.Log
 import java.io.File
 import java.io.FileOutputStream
 
-class DownloadManager(private val context: Context) {
+class DownloadManager(private val context: Context, private val client: OkHttpClient) {
 
     suspend fun downloadFile(
         url: String
     ): String {
-        val client = OkHttpClient.Builder().build()
         val request = Request.Builder().url(url).build()
 
         val call = client.newCall(request).execute()
